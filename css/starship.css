@@ -1,0 +1,58 @@
+html {
+  background-color: black;
+  color : white;
+}
+
+div{
+  color: white;
+}
+
+th {
+  font-size: 120%; 
+  background-color: orange; 
+}
+
+th.headsection {
+  background-color: black;
+}
+
+td.section {
+  background-color: black;
+  min-width: 25em;
+}
+
+td.headsection {
+  background-color: black;
+}
+
+td {
+  background-color: purple; 
+}
+
+td.buttonSection {
+  min-width: 3em;
+  max-width: 3em
+}
+
+th.orangeBar {
+  column-span: 5
+}
+
+textarea { 
+  min-height:6em; 
+  min-width: 25em;
+}
+
+td.buttontd {
+  background-color: black
+}
+
+td.topbutton {
+  background-color: black
+}
+
+input.buttons {
+  background-color: purple;
+  color: white;
+  border-color: black;
+}

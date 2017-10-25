@@ -1,0 +1,325 @@
+<!doctype html>
+<html>
+  <link rel="stylesheet" href="../css/starship.css">
+  <head>
+    <title>Starship Character Sheet</title>
+  </head>
+  <body>
+    <div>
+      <H2>Starship Character Sheet</H2>
+      <p>
+        <input value="New Ship", id="newButton" class="buttons" type="button">
+        <input value="Load Ship" id="loadButton" class="buttons" type="button">
+      </p>
+      <p>
+        <input type="file" id="loadFile" hidden="true">
+      </p>
+      <p>
+        <input value="Import Ship", id="importButton" class="buttons" type="button" hidden="true">
+        <input value="Cancel" id="cancelButton" class="buttons" type="button" hidden="true">
+      </p>
+    </div>
+
+    <div id="charSheet" hidden="true">
+      <table>
+        <tr>
+          <td>Ship Name</td>
+          <td id="shipNameTd">
+            <input id="shipName" value="Ship Name" type="text">
+          </td>
+          <td id=shipNameTextTd hidden="true"></td>
+          <td id="setNameButtonTd" class="topbutton" hidden="true">
+            <input id="setNameButton" class="buttons" value="Set Name" type="button">
+          </td>
+        </tr>
+        <tr>
+          <td>Ship Class</td>
+          <td id="shipClassTd">
+            <select id="shipClass">
+              <option value="Akira">Akira</option>
+              <option value="Constellation">Constellation</option>
+              <option value="Constitution">Constitution</option>
+              <option value="Defiant">Defiant</option>
+              <option value="Excelsior">Excelsior</option>
+              <option value="Galaxy">Galaxy</option>
+              <option value="Intrepid">Intrepid</option>
+              <option value="Miranda">Miranda</option>
+              <option value="Nova">Nova</option>
+            </select>
+          </td>
+          <td id="shipClassTextTd" hidden="true"></td>
+          <td id="setClassButtonTd"  class="topbutton" hidden="false">
+            <input type=button id="setClassButton" class="buttons" value="Choose Class">
+          </td>
+        </tr>
+        <tr>
+          <td>Mission Profile</td>
+          <td id="missionProfileSelectTd" hidden="true">
+            <select id="missionProfile">
+              <option value="Strategic and Diplomatic Operations">Strategic and Diplomatic Operations</option>
+              <option value="Pathfinder and Reconnaissance Operations">Pathfinder and Reconnaissance Operations</option>
+              <option value="Technical Testbed">Technical Testbed</option>
+              <option value="Tactical Operations">Tactical Operations</option>
+              <option value="Scientific and Survey Operations">Scientific and Survey Operations</option>
+              <option value="Crisis and Emergency Response">Crisis and Emergency Response</option>
+              <option value="Multirole Explorer">Multirole Explorer</option>
+            </select>
+          </td>
+          <td id="missionProfileTextTd" hidden="true"></td>
+          <td id="missionProfileButtonTd" class="topbutton" hidden="true">
+            <input type="button" id="missionProfileButton" class="buttons" value="Set Mission Profile" disabled="true">
+          </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <th></th>
+          <th class="headsection">Systems</th>
+          <th class="headsection"></th>
+          <th colspan="3"></th>
+        </tr>
+        <tr>
+          <td class="headsection"></td>
+          <td>Comms</td>
+          <td id="commsTd">0</td>
+          <td  id="commsUpButtontd" class="buttontd" hidden="true">
+            <input id="commsUpButton" class="buttons" type=button value="+">
+          </td>
+          <td  id="commsDownButtontd" class="buttontd" hidden="true">
+            <input id="commsDownButton" class="buttons" type=button value="-">
+          </td>
+          <td class="section"></td>
+        </tr>
+        <tr>
+          <td class="headsection"></td>
+          <td>Engines</td>
+          <td id="enginesTd">0</td>
+          <td  id="engineUpButtontd" class="buttontd" hidden="true">
+            <input id="engineUpButton" class="buttons" type=button value="+">
+          </td>
+          <td  id="engineDownButtontd" class="buttontd" hidden="true">
+            <input id="engineDownButton" class="buttons" type=button value="-">
+          </td>
+        </tr>
+        <tr>
+          <td class="headsection"></td>
+          <td>Structure</td>
+          <td id="structureTd">0</td>
+          <td  id="strucUpButtontd" class="buttontd" hidden="true">
+            <input id="strucUpButton" class="buttons" type=button value="+">
+          </td>
+          <td  id="strucDownButtontd" class="buttontd" hidden="true">
+            <input id="strucDownButton" class="buttons" type=button value="-">
+          </td>
+        </tr>
+        <tr>
+          <td class="headsection"></td>
+          <td>Computers</td>
+          <td id="computersTd">0</td>
+          <td  id="compUpButtontd" class="buttontd" hidden="true">
+            <input id="compUpButton" class="buttons" type=button value="+">
+          </td>
+          <td  id="compDownButtontd" class="buttontd" hidden="true">
+            <input id="compDownButton" class="buttons" type=button value="-">
+          </td>
+        </tr>
+        <tr>
+          <td class="headsection"></td>
+          <td>Sensors</td>
+          <td id="sensorsTd">0</td>
+          <td  id="sensUpButtontd" class="buttontd" hidden="true">
+            <input id="sensUpButton" class="buttons" type=button value="+">
+          </td>
+          <td  id="sensDownButtontd" class="buttontd" hidden="true">
+            <input id="sensDownButton" class="buttons" type=button value="-">
+          </td>
+        </tr>
+        <tr>
+          <td class="headsection"></td>
+          <td>Weapons</td>
+          <td id="weaponsTd">0</td>
+          <td  id="weapUpButtontd" class="buttontd" hidden="true">
+            <input id="weapUpButton" class="buttons" type=button value="+">
+          </td>
+          <td  id="weapDownButtontd" class="buttontd" hidden="true">
+            <input id="weapDownButton" class="buttons" type=button value="-">
+          </td>
+        </tr>
+        <tr>
+          <th></th>
+          <th class="headsection">Departments</th>
+          <th class="headsection"></th>
+          <th colspan="3"></th>
+        </tr>
+        <tr>
+          <td class="headsection"></td>
+          <td>Command</td>
+          <td id="commandTd">0</td>
+          <td  id="cmdUpButtontd" class="buttontd" hidden="true">
+            <input id="cmdUpButton" class="buttons" type=button value="+">
+          </td>
+          <td  id="cmdDownButtontd" class="buttontd" hidden="true">
+            <input id="cmdDownButton" class="buttons" type=button value="-">
+          </td>
+        </tr>
+        <tr>
+          <td class="headsection"></td>
+          <td>Security</td>
+          <td id="securityTd">0</td>
+          <td  id="secUpButtontd" class="buttontd" hidden="true">
+            <input id="secUpButton" class="buttons" type=button value="+">
+          </td>
+          <td  id="secDownButtontd" class="buttontd" hidden="true">
+            <input id="secDownButton" class="buttons" type=button value="-">
+          </td>
+        </tr>
+        <tr>
+          <td class="headsection"></td>
+          <td>Science</td>
+          <td id="scienceTd">0</td>
+          <td  id="sciUpButtontd" class="buttontd" hidden="true">
+            <input id="sciUpButton" class="buttons" type=button value="+">
+          </td>
+          <td  id="sciDownButtontd" class="buttontd" hidden="true">
+            <input id="sciDownButton" class="buttons" type=button value="-">
+          </td>
+        </tr>
+        <tr>
+          <td class="headsection"></td>
+          <td>Conn</td>
+          <td id="connTd">0</td>
+          <td  id="connUpButtontd" class="buttontd" hidden="true">
+            <input id="connUpButton" class="buttons" type=button value="+">
+          </td>
+          <td  id="connDownButtontd" class="buttontd" hidden="true">
+            <input id="connDownButton" class="buttons" type=button value="-">
+          </td>
+        </tr>
+        <tr>
+          <td class="headsection"></td>
+          <td>Engineering</td>
+          <td id="engineeringTd">0</td>
+          <td  id="engUpButtontd" class="buttontd" hidden="true">
+            <input id="engUpButton" class="buttons" type=button value="+">
+          </td>
+          <td  id="engDownButtontd" class="buttontd" hidden="true">
+            <input id="engDownButton" class="buttons" type=button value="-">
+          </td>
+        </tr>
+        <tr>
+          <td class="headsection"></td>
+          <td>Medicine</td>
+          <td id="medicineTd">0</td>
+          <td  id="medUpButtontd" class="buttontd" hidden="true">
+            <input id="medUpButton" class="buttons" type=button value="+">
+          </td>
+          <td  id="medDownButtontd" class="buttontd" hidden="true">
+            <input id="medDownButton" class="buttons" type=button value="-">
+          </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <th></th>
+          <th class="headsection">Talents</th>
+          <th class="orangeBar" colspan="5"></th>
+        </tr>
+        <tr id="talentRow" hidden="true">
+          <td class="headsection" colspan="4">
+            <select id=talentField></select>
+            <input type="button" id="talentButton" class="buttons" value="Add Talent to List">
+          </td>
+          <td class="headsection"></td>
+        </tr>
+        <tr id="profileTalentTr" hidden="true">
+          <td class="headsection"></td>
+          <td class="headsection" colspan="2">
+            <select id="profileTalentSelect"></select>
+          </td>
+          <td class="headsection">
+            <input id="profileTalentButton" class="buttons" type="button" value="Choose">
+          </td>
+          <td class="headsection"></td>
+        </tr>
+        <tr>
+          <td class="headsection"></td>
+          <td class="headsection" colspan="2">
+            <textarea id="talentDisplay" readonly></textarea>
+          </td>
+        </tr>
+        <tr>
+          <th></th>
+          <th class="headsection" width="5em">Traits</th>
+          <th class="orangeBar" colspan="5"></th>
+        </tr>
+        <tr id=traitRow hidden="true">
+          <td class="headsection"></td>
+          <td class="headsection" colspan="4">
+            <input type=text id="traitField">
+            <input type=button id="traitButton" class="buttons" value="Add Trait to List">
+          </td>
+          <td class="headsection"></td>
+        </tr>
+        <tr>
+          <td class="headsection"></td>
+          <td class="headsection" colspan="2">
+            <textarea id="traitDisplay" readonly ></textarea>
+          </td>
+          <td class="section"></td>
+        </tr>
+        <tr>
+          <th></th>  
+          <th class="headsection">Weapons</th>
+          <th class="orangeBar" colspan="6"></th>
+        </tr>
+
+        <tr id=weaponRow hidden="true">
+          <td class="headsection"></td>
+          <td class="headsection">
+            <select id="typeSelect">
+              <option>Phaser</option>
+              <option>Disruptor</option>
+              <option>Phased Polaron Beam</option>
+            </select>
+          </td>
+          <td class="headsection">
+            <select id="deliverySelect">
+              <option>Cannons</option>
+              <option>Banks</option>
+              <option>Arrays</option>
+            </select>
+          </td>
+          <td class="headsection">
+            <input type=button id="weaponButton" class="buttons" value="Add Weapon">
+          </td>
+          <td class="section"></td>
+        </tr>
+        <tr id=torpedoRow hidden="true">
+          <td class="headsection"></td>
+          <td class="headsection">
+            <select id="torpedoSelect">
+              <option>Photon Torpedo</option>
+              <option>Quantum Torpedo</option>
+              <option>Plasma Torpedo</option>
+            </select>
+          </td>
+          <td class="headsection">
+            <input type=button id="torpedoButton" class="buttons" value="Add Torpedo">
+          </td>
+        </tr>
+        <tr>
+          <td class="headsection"></td>
+          <td class="headsection" colspan="2">
+            <textarea id="weaponDisplay" readonly></textarea>
+          </td>
+        </tr>
+      </table>
+
+      <input id="editButton" class="buttons" type=button value=Edit> 
+      <input value="Download" id="downloadButton" class="buttons" type="button">
+      <input value="Cancel" id="cancelNewButton" class="buttons" type="button">
+
+    </div>
+    <script src="../js/starship.js"></script>
+  </body>
+</html>
