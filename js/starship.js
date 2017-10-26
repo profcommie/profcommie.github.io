@@ -12,6 +12,7 @@ Clicking on talent explains what it does
 Admin tab? Allow DM to add traits and talents? Would need to track as part of the ship, possibly a separate save file... Might be something to modify if I ever add a backend/serverside element to this for tracking ships in the cloud. appstate
 Need to find out how to change the filetype on the output file from txt to JSON or something
 */
+
 var ship = {
     name:"",
     class:"",
@@ -32,7 +33,9 @@ let newFlag = false;
 let starDate = 2371;
 let inserviceDate = 2017;
 let numRefits = 0;            
-let buttons = [commsUpButtontd, commsDownButtontd, engineUpButtontd, engineDownButtontd, strucUpButtontd, strucDownButtontd, compUpButtontd, compDownButtontd, sensUpButtontd, sensDownButtontd, weapUpButtontd, weapDownButtontd, cmdUpButtontd, cmdDownButtontd, connUpButtontd, connDownButtontd, secUpButtontd, secDownButtontd, engUpButtontd, engDownButtontd, sciUpButtontd, sciDownButtontd, medUpButtontd, medDownButtontd, traitRow, talentRow, weaponRow, torpedoRow]; 
+let buttons = [commsUpButtontd, commsDownButtontd, engineUpButtontd, engineDownButtontd, strucUpButtontd, strucDownButtontd, compUpButtontd, compDownButtontd, sensUpButtontd, sensDownButtontd, weapUpButtontd, weapDownButtontd, 
+                cmdUpButtontd, cmdDownButtontd, connUpButtontd, connDownButtontd, secUpButtontd, secDownButtontd, engUpButtontd, engDownButtontd, sciUpButtontd, sciDownButtontd, medUpButtontd, medDownButtontd, 
+                traitRow, talentRow, weaponRow, torpedoRow, setNameButtonTd, setClassButtonTd, missionProfileButtonTd, shipClassTd, missionProfileSelectTd, shipNameTd]; 
 
 let profiles = {
     "Strategic and Diplomatic Operations":[3,2,2,1,2,2],
@@ -228,6 +231,10 @@ function editHandler() {
     for(let btn in buttons){
         buttons[btn].hidden = editFlag;
     }
+    shipNameTextTd.hidden = !editFlag;
+    shipClassTextTd.hidden = !editFlag;
+    missionProfileTextTd.hidden = !editFlag;
+
     editFlag = !editFlag;
 }
 
@@ -474,6 +481,10 @@ function profileTalentHandler() {
     updateStats();
 }
 
+function removeButtonHandler() {
+    $("#selectBox option:selected").remove();
+}
+
 function updateStats() {
     console.log("updateStats fired");
 
@@ -553,6 +564,7 @@ talentButton.addEventListener("click", talentHandler);
 traitButton.addEventListener("click", traitHandler);
 weaponButton.addEventListener("click", weaponHandler);
 torpedoButton.addEventListener("click", torpedoHandler);
+removeWeaponButton.addEventListener("click", removeButtonHandler);
 missionProfileButton.addEventListener("click", missionProfileHandler);
 profileTalentButton.addEventListener("click", profileTalentHandler);
 console.log("EventListeners loaded");

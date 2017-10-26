@@ -56,3 +56,14 @@ input.buttons {
   color: white;
   border-color: black;
 }
+
+input.buttons:disabled {
+  background-color:   hsl(270, 100%, 95%);
+  color: grey;
+  border-color: black;
+}
+
+select.multiselect {
+  min-height:6em; 
+  min-width: 25em;
+}
