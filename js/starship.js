@@ -27,8 +27,8 @@ var ship = {
         damage:[],
         qualities:[]
     },
-    talents:"",//convert to array
-    traits:"",//convert to array
+    talents:[],
+    traits:[],//convert to array
     profileVals:[0,0,0,0,0,0],
     missionProfile:""
 };
@@ -93,7 +93,7 @@ function download(filename, text) {
     console.log("download fired");
     let element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename);
+    element.setAttribute('download', filename+".ship");
 
     element.style.display = 'none';
     document.body.appendChild(element);
@@ -156,8 +156,8 @@ function cancelHandler() {
     ship.weaponry.name = [];
     ship.weaponry.damage = [];
     ship.weaponry.qualities = [];
-    ship.talents = "";
-    ship.traits = "";
+    ship.talents = [];
+    ship.traits = [];
 
     for(let i = 0; i < 6; i++){
         ship.systems[i] = 0;
@@ -312,101 +312,111 @@ function setClassHandler() {
                 ship.scale = 5;
                 ship.systems = [9,10,11,9,9,11];
                 ship.departments = [0,2,0,0,0,1];
-                ship.traits = "Federation Ship\n";
+                addTrait("Federation Ship");
                 addWeapon("Phaser Arrays", ship.scale + ship.departments[1],weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 4");
-                ship.talents = "Ablative Armor\nExtensive Shuttlebays\nRapid Fire Torpedo Launcher\n";
+                addTalent("Ablative Armor");
+                addTalent("Extensive Shuttlebays");
+                addTalent("Rapid Fire Torpedo Launcher");
                 inserviceDate = 2368;
                 break;
             case "Constellation":  
                 ship.scale = 4;
                 ship.systems = [8,9,8,7,9,9];
                 ship.departments = [0,1,0,1,1,0];
-                ship.traits = "Federation Ship\n";
+                addTrait("Federation Ship");
                 addWeapon("Phaser Banks", ship.scale + ship.departments[1] + 1,weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 2");
-                ship.talents = "Improved Warp Drive\nExtensive Shuttlebays\n";
+                addTalent("Improved Warp Drive");
+                addTalent("xtensive Shuttlebays");
                 inserviceDate = 2285;
                 break;
             case "Constitution":  
                 ship.scale = 4;
                 ship.systems = [7,8,8,7,8,8];
                 ship.departments = [1,1,1,0,0,0];
-                ship.traits = "Federation Ship\n";
+                addTrait("Federation Ship");
                 addWeapon("Phaser Banks", ship.scale + ship.departments[1] + 1,weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 3");
-                ship.talents = "Rugged Design\nModular Laboratories\n";
+                addTalent("Rugged Design");
+                addTalent("Modular Laboratories");
                 inserviceDate = 2243;
                 break;
             case "Defiant":  
                 ship.scale = 3;
                 ship.systems = [9,10,8,9,9,13];
                 ship.departments = [0,2,0,1,0,0];
-                ship.traits = "Federation Ship\n";
+                addTrait("Federation Ship");
                 addWeapon("Phaser Arrays", ship.scale + ship.departments[1],weapQual["Phaser"]);
                 addWeapon("Phaser Cannon", ship.scale + ship.departments[1] +2,weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Quantum Torpedo", ship.departments[1] + 4,weapQual["Quantum Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 2");
-                ship.talents = "Ablative Armor\nQuantum Torpedoes\n";
+                addTalent("Ablative Armor");
+                addTalent("Quantum Torpedoes");
                 inserviceDate = 2371;
                 break;
             case "Excelsior":  
                 ship.scale = 5;
                 ship.systems = [8,9,9,8,8,9];
                 ship.departments = [1,0,0,0,2,0];
-                ship.traits = "Federation Ship\n";
+                addTrait("Federation Ship");
                 addWeapon("Phaser Banks", ship.scale + ship.departments[1] + 1,weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 4");
-                ship.talents = "Improved Impulse Drive\nSecondary Reactors\n";
+                addTalent("Improved Impulse Drive");
+                addTalent("Secondary Reactors");
                 inserviceDate = 2285;
                 break;
             case "Galaxy":  
                 ship.scale = 6;
                 ship.systems = [9,10,10,10,9,10];
                 ship.departments = [1,0,1,0,0,1];
-                ship.traits = "Federation Ship\n";
+                addTrait("Federation Ship");
                 addWeapon("Phaser Arrays", ship.scale + ship.departments[1],weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 5");
-                ship.talents = "Saucer Separation\nModular Laboratories\nRedundant Systems\n";
+                addTalent("Saucer Separation");
+                addTalent("Modular Laboratories");
+                addTalent("Redundant Systems");
                 inserviceDate = 2359;
                 break;
             case "Intrepid":  
                 ship.scale = 4;
                 ship.systems = [10,11,8,11,10,9];
                 ship.departments = [0,0,2,1,0,0];
-                ship.traits = "Federation Ship\n";
+                addTrait("Federation Ship");
                 addWeapon("Phaser Arrays", ship.scale + ship.departments[1],weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 3");
-                ship.talents = "Improved Warp Drive\nAdvanced Sensor Suites\nEmergency Medical Hologram\n";
+                addTalent("Improved Warp Drive");
+                addTalent("Advanced Sensor Suites");
+                addTalent("Emergency Medical Hologram");
                 inserviceDate = 2371;
                 break;
             case "Miranda": 
                 ship.scale = 4;
                 ship.systems = [8,8,8,8,9,9];
                 ship.departments = [1,0,1,1,0,0];
-                ship.traits = "Federation Ship\n";
+                addTrait("Federation Ship");
                 addWeapon("Phaser Banks", ship.scale + ship.departments[1] + 1,weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 3");
-                ship.talents = "Extensive Shuttlebays\n";
+                addTalent("Extensive Shuttlebays");
                 inserviceDate = 2274;
                 break;
             case "Nova":  
                 ship.scale = 3;
                 ship.systems = [10,9,8,10,10,8];
                 ship.departments = [0,0,2,0,1,0];
-                ship.traits = "Federation Ship\n";
+                addTrait("Federation Ship");
                 addWeapon("Phaser Arrays", ship.scale + ship.departments[1],weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 2");
-                ship.talents = "Advanced Sensors\n";
+                addTalent("Advanced Sensors");
                 inserviceDate = 2368;
                 break;
 
@@ -429,30 +439,73 @@ function setNameHandler() {
         shipNameTextTd.hidden = false;
 }
 
+
+function weaponHandler(weapType) {
+    return function() {
+        if(weapType === "weapon") {
+            //for(let w in ship.weaponry.name) {
+                if(ship.weaponry.name.includes(typeSelect.value + " " + deliverySelect.value)){
+                    return;
+                }
+            //}
+            console.log(ship.scale + ship.departments[1] + weapDamage[deliverySelect.value]);
+            addWeapon(typeSelect.value + " " + deliverySelect.value, ship.scale + ship.departments[1] + weapDamage[deliverySelect.value], weapQual[typeSelect.value]);
+
+        } else if(weapType ==="torpedo") {
+            for(let w in ship.weaponry.name) {
+                if(ship.weaponry.name.includes(torpedoSelect.value)){
+                    return;
+                }
+            }
+            addWeapon(torpedoSelect.value, ship.scale + ship.departments[1] + weapDamage[torpedoSelect.value], weapQual[torpedoSelect.value]);
+        }
+    }
+}
+
 function talentHandler() {
     console.log("talentHandler fired");
     if(!ship.talents.includes(talentField.value)){
-        ship.talents += talentField.value + "\n";
+        addTalent(talentField.value);
+        console.log(ship.talents);
     }
-    console.log(ship.talents)
-    talentDisplay.value = ship.talents;
 }
 
 function traitHandler() {
     console.log("traitHandler fired");
-    if(traitField.value != ""){
-        if(!ship.traits.includes(traitField.value)){
-            ship.traits += traitField.value + "\n";
-        }
+    if(traitField.value != "" && !ship.traits.includes(traitField.value)){
+        addTrait(traitField.value);
+        traitField.value = "";
     }
+    console.log(ship.traits);
+}
 
-    console.log(ship.traits)
-    traitField.value = "";
-    traitDisplay.value = ship.traits;
+function addTalent(talent) {
+    console.log("addTalent fired");
+    console.log(talent);
+    if(!ship.talents.includes(talent)){
+        ship.talents.push(talent);
+    }
+    let newTalentEntry = document.createElement("option");
+    newTalentEntry.text = `${talent}`;
+    talentDisplay.add(newTalentEntry);
+    console.log(ship.talents);
+}
+
+function addTrait(trait) {
+    console.log("addTrait fired");
+    console.log(trait);
+    if(!ship.traits.includes(trait)){
+        ship.traits.push(trait);
+    }
+    let newTraitEntry = document.createElement("option");
+    newTraitEntry.text = `${trait}`;
+    console.log("NTE" + trait)
+    traitDisplay.add(newTraitEntry);
+    console.log(ship.traits);
 }
 
 function addWeapon(name,damage,qualities) {
-    console.log("weaponHandler fired");
+    console.log("addWeapon fired");
     if(!ship.weaponry.name.includes(name)){
         ship.weaponry.name.push(name);
         ship.weaponry.damage.push(damage);
@@ -474,47 +527,23 @@ function removeWeapon() {
         ship.weaponry.name.splice(index,1);
         ship.weaponry.damage.splice(index,1);
         ship.weaponry.qualities.splice(index,1);
-        weaponDisplay.remove(weaponDisplay.selectedIndex);
+        weaponDisplay.remove(index);
     }
 }
 function removeTrait() {
     console.log("removeTrait fired");
-    let index = weaponDisplay.selectedIndex;
+    let index = traitDisplay.selectedIndex;
     if(index > -1) {
-        ship.weaponry.name.splice(index,1);
-        ship.weaponry.damage.splice(index,1);
-        ship.weaponry.qualities.splice(index,1);
-        weaponDisplay.remove(weaponDisplay.selectedIndex);
+        ship.traits.splice(index,1);
+        traitDisplay.remove(index);
     }
 }
 function removeTalent() {
     console.log("removeTalent fired");
-    let index = weaponDisplay.selectedIndex;
+    let index = talentDisplay.selectedIndex;
     if(index > -1) {
         ship.talents.splice(index,1);
-        weaponDisplay.remove(weaponDisplay.selectedIndex);
-    }
-}
-
-function weaponHandler(weapType) {
-    return function() {
-        if(weapType === "weapon") {
-            for(let w in ship.weaponry.name) {
-                if(ship.weaponry.name.includes(typeSelect.value + " " + deliverySelect.value)){
-                    return;
-                }
-            }
-            console.log(ship.scale + ship.departments[1] + weapDamage[deliverySelect.value]);
-            addWeapon(typeSelect.value + " " + deliverySelect.value, ship.scale + ship.departments[1] + weapDamage[deliverySelect.value], weapQual[typeSelect.value]);
-
-        } else if(weapType ==="torpedo") {
-            for(let w in ship.weaponry.name) {
-                if(ship.weaponry.name.includes(torpedoSelect.value)){
-                    return;
-                }
-            }
-            addWeapon(torpedoSelect.value, ship.scale + ship.departments[1] + weapDamage[torpedoSelect.value], weapQual[torpedoSelect.value]);
-        }
+        talentDisplay.remove(index);
     }
 }
 
@@ -538,10 +567,12 @@ function missionProfileHandler() {
 
 function profileTalentHandler() {
     console.log("profileTalentHandler fired");
-    profileTalentTr.hidden = true;
-    ship.talents += profileTalentSelect.value + "\n"
-
-    updateStats();
+    
+    if(!ship.talents.includes(profileTalentSelect.value)){
+        profileTalentTr.hidden = true;
+        addTalent(profileTalentSelect.value);
+        updateStats();
+    }
 }
 
 function updateStats() {
@@ -559,12 +590,22 @@ function updateStats() {
         connTd.textContent = String(ship.departments[3]);
         engineeringTd.textContent = String(ship.departments[4]);
         medicineTd.textContent = String(ship.departments[5]);
-        traitDisplay.value = ship.traits;
-        talentDisplay.value = ship.talents;
+        //traitDisplay.value = ship.traits;
+        //talentDisplay.value = ship.talents;
+        talentDisplay.innerHTML = "";
+        traitDisplay.innerHTML = "";
         weaponDisplay.innerHTML = "";
-        console.log("Ship Names " + ship.weaponry.name);
-        console.log("Ship Damages " + ship.weaponry.damage);
-        console.log("Ship Qualities " + ship.weaponry.quality);
+        
+        for(let tal in ship.talents) {
+            addTalent(ship.talents[tal]);
+            console.log("Updating: " + ship.talents[tal]);
+        }
+        
+        for(let tr in ship.traits) {
+            addTrait(ship.traits[tr]);
+            console.log("Updating: " + ship.traits[tr])
+        }
+
         for(let w in ship.weaponry.name) {
             addWeapon(ship.weaponry.name[w], ship.weaponry.damage[w], ship.weaponry.qualities[w]);
             console.log(ship.weaponry.name[w]+" "+ ship.weaponry.damage[w]+" "+ ship.weaponry.qualities[w])
@@ -631,6 +672,8 @@ traitButton.addEventListener("click", traitHandler);
 weaponButton.addEventListener("click", weaponHandler("weapon"));
 torpedoButton.addEventListener("click", weaponHandler("torpedo"));
 removeWeaponButton.addEventListener("click", removeWeapon);
+removeTraitButton.addEventListener("click", removeTrait);
+removeTalentButton.addEventListener("click", removeTalent);
 missionProfileButton.addEventListener("click", missionProfileHandler);
 profileTalentButton.addEventListener("click", profileTalentHandler);
 console.log("EventListeners loaded");

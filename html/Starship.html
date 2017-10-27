@@ -12,7 +12,7 @@
         <input value="Load Ship" id="loadButton" class="buttons" type="button">
       </p>
       <p>
-        <input type="file" id="loadFile" hidden="true">
+        <input type="file" id="loadFile" hidden="true" accept=".ship">
       </p>
       <p>
         <input value="Import Ship", id="importButton" class="buttons" type="button" hidden="true">
@@ -24,18 +24,17 @@
       <table class="headtable">
         <tr>
           <td class="purplesection">Ship Name</td>
-          <td id="shipNameTd" class="purplesection">
+          <td id="shipNameTd">
             <input id="shipName" value="Ship Name" type="text">
           </td>
-          <td id=shipNameTextTd hidden="true" class="purplesection"></td>
+          <td id=shipNameTextTd hidden="true"></td>
           <td id="setNameButtonTd" class="topbutton" hidden="true">
             <input id="setNameButton" class="buttons" value="Set Name" type="button">
           </td>
-          <td class="section"></td>
         </tr>
         <tr>
           <td class="purplesection">Ship Class</td>
-          <td id="shipClassTd" class="purplesection">
+          <td id="shipClassTd">
             <select id="shipClass">
               <option value="Akira">Akira</option>
               <option value="Constellation">Constellation</option>
@@ -48,15 +47,14 @@
               <option value="Nova">Nova</option>
             </select>
           </td>
-          <td id="shipClassTextTd" hidden="true" class="purplesection"></td>
+          <td id="shipClassTextTd" hidden="true"></td>
           <td id="setClassButtonTd"  class="topbutton" hidden="false">
             <input type="button" id="setClassButton" class="buttons" value="Choose Class">
           </td>
-          <td class="section"></td>
         </tr>
         <tr>
           <td class="purplesection">Mission Profile</td>
-          <td id="missionProfileSelectTd" hidden="true" class="purplesection">
+          <td id="missionProfileSelectTd" hidden="true">
             <select id="missionProfile">
               <option value="Strategic and Diplomatic Operations">Strategic and Diplomatic Operations</option>
               <option value="Pathfinder and Reconnaissance Operations">Pathfinder and Reconnaissance Operations</option>
@@ -67,18 +65,17 @@
               <option value="Multirole Explorer">Multirole Explorer</option>
             </select>
           </td>
-          <td id="missionProfileTextTd" hidden="true" class="purplesection"></td>
+          <td id="missionProfileTextTd" hidden="true"></td>
           <td id="missionProfileButtonTd" class="topbutton" hidden="true">
             <input type="button" id="missionProfileButton" class="buttons" value="Set Mission Profile" disabled="true">
           </td>
-          <td class="section"></td>
         </tr>
       </table>
       <table>
         <tr>
           <th class="orangeBar"></th>
-          <th>Systems</th>
-          <th colspan="6" class="orangeBar"></th>
+          <th class="stattitle">Systems</th>
+          <th colspan="5" class="orangeBar"></th>
         </tr>
         <tr>
           <td></td>
@@ -151,8 +148,8 @@
         </tr>
         <tr>
           <th class="orangeBar"></th>
-          <th>Departments</th>
-          <th colspan="6" class="orangeBar"></th>
+          <th class="stattitle">Departments</th>
+          <th colspan="5" class="orangeBar"></th>
         </tr>
         <tr>
           <td></td>
@@ -224,12 +221,12 @@
       <table>
         <tr>
           <th class="orangeBar"></th>
-          <th>Talents</th>
+          <th class="stattitle">Talents</th>
           <th class="orangeBar" colspan="5"></th>
         </tr>
         <tr id="talentRow" hidden="true">
           <td></td>
-          <td>
+          <td colspan="2">
             <select id=talentField></select>
           </td>
           <td>
@@ -249,8 +246,8 @@
         </tr>
         <tr>
           <td></td>
-          <td colspan="2">
-            <textarea id="talentDisplay" readonly></textarea>
+          <td colspan="3">
+            <select id="talentDisplay" class="multiselect"  multiple></select>
           </td>
           <td id="removeTalentButtonTd"  hidden="true">
             <input type="button" class="buttons" id="removeTalentButton" value="Remove">
@@ -258,12 +255,12 @@
         </tr>
         <tr>
           <th class="orangeBar"></th>
-          <th>Traits</th>
+          <th class="stattitle">Traits</th>
           <th class="orangeBar" colspan="5"></th>
         </tr>
         <tr id=traitRow hidden="true">
           <td></td>
-          <td>
+          <td colspan="2">
             <input type=text id="traitField">
           </td>
           <td>
@@ -273,17 +270,17 @@
         </tr>
         <tr>
           <td></td>
-          <td colspan="2">
-            <textarea id="traitDisplay" readonly ></textarea>
+          <td colspan="3">
+            <select id="traitDisplay" class="multiselect"  multiple></select>
           </td>
           <td id="removeTraitButtonTd"  hidden="true">
             <input type="button" class="buttons" id="removeTraitButton" value="Remove">
           </td>
-          <td class="section" colspan="3"></td>
+          <td class="section" colspan="4"></td>
         </tr>
         <tr>
           <th class="orangeBar"></th>  
-          <th>Weapons</th>
+          <th class="stattitle">Weapons</th>
           <th class="orangeBar" colspan="5"></th>
         </tr>
 
@@ -317,14 +314,14 @@
               <option>Plasma Torpedo</option>
             </select>
           </td>
-          <td>
+          <td></td>
           <td>
             <input type="button" id="torpedoButton" class="buttons" value="Add Torpedo">
           </td>
         </tr>
         <tr>
           <td></td>
-          <td colspan="2">
+          <td colspan="3">
             <select id="weaponDisplay" class="multiselect"  multiple></select>
           </td>
           <td id="removeWeaponButtonTd"  hidden="true">

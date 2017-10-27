@@ -2,14 +2,13 @@ html {
   background-color: black;
   color : white;
 }
-
-div{
+ 
+div {
   color: white;
 }
 
 table {
-    /*border-top: 20px;*/
-    width:50%;
+  width:50em;
 }
 /*
 table, th, td {
@@ -21,8 +20,12 @@ th {
   background-color: black;
 }
 
+th.stattitle {
+  width:6em;
+}
+
 th.orangeBar {
-  background-color: orange; 
+  background-color: orange;
 }
 
 td {
@@ -35,16 +38,18 @@ td.section {
 
 td.purplesection {
   background-color: purple;
+  width: 7em;
 }
 
 td.statsection {
-  max-width: 2em;
+  width: 1em;
+  text-align: center;
 }
 
 td.buttontd {
   min-width: 1em;
   max-width: 1em;
-  justify-content: center;
+  text-align: center;
 }
 
 input {
@@ -76,7 +81,7 @@ textarea {
 }
 
 select {
-  width:100%;
+  min-width:100%;
 }
 
 select.multiselect {
