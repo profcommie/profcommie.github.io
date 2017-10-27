@@ -40,7 +40,7 @@ let inserviceDate = 2017;
 let numRefits = 0;            
 let buttons = [commsUpButtontd, commsDownButtontd, engineUpButtontd, engineDownButtontd, strucUpButtontd, strucDownButtontd, compUpButtontd, compDownButtontd, sensUpButtontd, sensDownButtontd, weapUpButtontd, weapDownButtontd, 
                 cmdUpButtontd, cmdDownButtontd, connUpButtontd, connDownButtontd, secUpButtontd, secDownButtontd, engUpButtontd, engDownButtontd, sciUpButtontd, sciDownButtontd, medUpButtontd, medDownButtontd, 
-                traitRow, talentRow, weaponRow, torpedoRow, setNameButtonTd, setClassButtonTd, missionProfileButtonTd, shipClassTd, missionProfileSelectTd, shipNameTd, removeWeaponButtonTd]; 
+                traitRow, talentRow, weaponRow, torpedoRow, setNameButtonTd, setClassButtonTd, missionProfileButtonTd, shipClassTd, missionProfileSelectTd, shipNameTd, removeWeaponButtonTd, removeTalentButtonTd, removeTraitButtonTd]; 
 
 let profiles = {
     "Strategic and Diplomatic Operations":[3,2,2,1,2,2],
@@ -245,6 +245,9 @@ function editHandler() {
     shipNameTextTd.hidden = !editFlag;
     shipClassTextTd.hidden = !editFlag;
     missionProfileTextTd.hidden = !editFlag;
+    shipName.value = ship.name;
+    shipClass.value = ship.class;
+    missionProfile.value = ship.missionProfile;
 
     editFlag = !editFlag;
 }

@@ -1,9 +1,9 @@
-Separate CSS, JS and HTML files
-Some elements are capitalized, but should be lowercase, e.g., BODY => body
-Implicit </p> tags should be made explicit
+//Separate CSS, JS and HTML files
+//Some elements are capitalized, but should be lowercase, e.g., BODY => body
+//Implicit </p> tags should be made explicit
 //Spaces between attributes, the equal sign and the attributes values should be removed
-Put quotes around attribute values
+//Put quotes around attribute values
 //Move inline style elements into the html level style element
-Indent 2 spaces instead of 4
+//Indent 2 spaces instead of 4
 Take a look at the thead, tbody and tfoot elements for tables
 //No inline styles

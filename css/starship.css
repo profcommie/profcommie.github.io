@@ -7,48 +7,52 @@ div{
   color: white;
 }
 
+table {
+    /*border-top: 20px;*/
+    width:50%;
+}
+/*
+table, th, td {
+    border: 1px solid white;
+}*/
+
 th {
   font-size: 120%; 
-  background-color: orange; 
-}
-
-th.headsection {
   background-color: black;
-}
-
-td.section {
-  background-color: black;
-  min-width: 25em;
-}
-
-td.headsection {
-  background-color: black;
-}
-
-td {
-  background-color: purple; 
-}
-
-td.buttonSection {
-  min-width: 3em;
-  max-width: 3em
 }
 
 th.orangeBar {
-  column-span: 5
+  background-color: orange; 
 }
 
-textarea { 
-  min-height:6em; 
-  min-width: 25em;
+td {
+  background-color: black; 
+}
+
+td.section {
+  min-width: 10em;
+}
+
+td.purplesection {
+  background-color: purple;
+}
+
+td.statsection {
+  max-width: 2em;
 }
 
 td.buttontd {
-  background-color: black
+  min-width: 1em;
+  max-width: 1em;
+  justify-content: center;
 }
 
-td.topbutton {
-  background-color: black
+input {
+  width:95%;
+}
+
+p input[type="button"] {
+  max-width: 10em;
 }
 
 input.buttons {
@@ -60,10 +64,25 @@ input.buttons {
 input.buttons:disabled {
   background-color:   hsl(270, 100%, 95%);
   color: grey;
-  border-color: black;
+}
+
+table.headtable input[type="button"] {
+  max-width: 10em;
+}
+
+textarea { 
+  min-height:6em; 
+  min-width: 95%;
+}
+
+select {
+  width:100%;
 }
 
 select.multiselect {
-  min-height:6em; 
-  min-width: 25em;
+  min-height:6em;
+}
+
+select.weaponSelects {
+  width:100%;
 }
