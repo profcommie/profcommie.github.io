@@ -2,10 +2,11 @@
 Brian Harkless
 Star Trek Adventures Starship Character Sheet
 TO DO LIST:
-Better implementation than textarea for display of traits weapons and talents Unordered List? embedded table with highlighted rows? CSS rule to turn off bullets
-Would like to be able to remove entries from the above by clicking them and then clicking a remove button multiselect/combo box
+Better implementation than textarea for display of traits weapons and talents - multiselect box
+    Requires rewrite of handlers, updateStats, switch statement, and import.
+Would like to be able to remove entries from the above by clicking them and then clicking a remove button multiselect/combo box - implemented for weapon
 Weapon damages should adjust when Security score changes
-Edit button triggers editable on Name, Class and Profile
+//Edit button triggers editable on Name, Class and Profile - Done
 Add nonship building fields (power, shields, etc)
 Add picture of ships when Class is selected
 Clicking on talent explains what it does
@@ -26,8 +27,8 @@ var ship = {
         damage:[],
         qualities:[]
     },
-    talents:"",
-    traits:"",
+    talents:"",//convert to array
+    traits:"",//convert to array
     profileVals:[0,0,0,0,0,0],
     missionProfile:""
 };
@@ -198,7 +199,9 @@ function importHandler() {
         ship.name = myship.name;
         ship.class = myship.class;
         ship.scale = myship.scale;
-        ship.weaponry = myship.weaponry;
+        ship.weaponry.name = myship.weaponry.name;
+        ship.weaponry.damage = myship.weaponry.damage;
+        ship.weaponry.qualities = myship.weaponry.qualities;
         ship.talents = myship.talents;
         ship.traits = myship.traits;
         ship.missionProfile = myship.missionProfile;
@@ -256,8 +259,6 @@ function systIncrease(statID,stat){
         } else {
             alert("Only one system may be at 12, and 12 is the max for any one system");
         }
-        console.log(ship.systems[stat]);
-        //statID.textContent = String(ship.systems[stat]);
         updateStats();
     };
 }
@@ -268,8 +269,6 @@ function systDecrease(statID,stat){
         if(ship.systems[stat] > 0){
             ship.systems[stat]--;
         }
-        console.log(ship.systems[stat]);
-        //statID.textContent = String(ship.systems[stat]);
         updateStats();
     };
 }
@@ -280,8 +279,6 @@ function deptIncrease(statID,stat){
         if(ship.departments[stat]<12){
             ship.departments[stat]++;
         }
-        console.log(ship.departments[stat]);
-        //statID.textContent = String(ship.departments[stat]);
         updateStats();
     };
 }
@@ -292,8 +289,6 @@ function deptDecrease(statID,stat){
         if(ship.departments[stat] > 0){
             ship.departments[stat]--;
         }
-        console.log(ship.departments[stat]);
-        //statID.textContent = String(ship.departments[stat]);
         updateStats();
     };
 }
@@ -318,9 +313,6 @@ function setClassHandler() {
                 addWeapon("Phaser Arrays", ship.scale + ship.departments[1],weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 4");
-
-                //damage = ship.scale + ship.departments[1];
-                //ship.weaponry = `Phaser Arrays\t ${damage} \u25B5\t${weapQual["Phaser"]}\nPhoton Torpedo\t ${ship.departments[1] + 3} \u25B5\t${weapQual["Photon Torpedo"]}\nTractor Beam(Strength 4)\n`;
                 ship.talents = "Ablative Armor\nExtensive Shuttlebays\nRapid Fire Torpedo Launcher\n";
                 inserviceDate = 2368;
                 break;
@@ -332,9 +324,6 @@ function setClassHandler() {
                 addWeapon("Phaser Banks", ship.scale + ship.departments[1] + 1,weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 2");
-                
-                //damage = ship.scale + ship.departments[1];
-                //ship.weaponry = `Phaser Banks\t ${damage + 1} \u25B5\t${weapQual["Phaser"]}\nPhoton Torpedo\t ${ship.departments[1] + 3} \u25B5\t${weapQual["Photon Torpedo"]}\nTractor Beam(Strength 2)\n`;
                 ship.talents = "Improved Warp Drive\nExtensive Shuttlebays\n";
                 inserviceDate = 2285;
                 break;
@@ -346,9 +335,6 @@ function setClassHandler() {
                 addWeapon("Phaser Banks", ship.scale + ship.departments[1] + 1,weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 3");
-                
-                //damage = ship.scale + ship.departments[1];
-                //ship.weaponry = `Phaser Banks\t ${damage + 1} \u25B5\t${weapQual["Phaser"]}\nPhoton Torpedo\t ${ship.departments[1] + 3} \u25B5\t${weapQual["Photon Torpedo"]}\nTractor Beam(Strength 3)\n`;
                 ship.talents = "Rugged Design\nModular Laboratories\n";
                 inserviceDate = 2243;
                 break;
@@ -362,9 +348,6 @@ function setClassHandler() {
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Quantum Torpedo", ship.departments[1] + 4,weapQual["Quantum Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 2");
-                
-                //damage = ship.scale + ship.departments[1];
-                //ship.weaponry = `Phaser Arrays\t ${damage} \u25B5\t${weapQual["Phaser"]}\nPhaser Cannon\t ${damage + 2} \u25B5\t${weapQual["Phaser"]}\nPhoton Torpedo\t ${ship.departments[1] + 3} \u25B5\t${weapQual["Photon Torpedo"]}\nQuantum Torpedo\t ${ship.departments[1] + 4} \u25B5 Vicious 1\t${weapQual["Quantum Torpedo"]}\nTractor Beam(Strength 2)\n`;
                 ship.talents = "Ablative Armor\nQuantum Torpedoes\n";
                 inserviceDate = 2371;
                 break;
@@ -376,9 +359,6 @@ function setClassHandler() {
                 addWeapon("Phaser Banks", ship.scale + ship.departments[1] + 1,weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 4");
-                
-                //damage = ship.scale + ship.departments[1];
-                //ship.weaponry = `Phaser Banks\t ${damage + 1} \u25B5\t${weapQual["Phaser"]}\nPhoton Torpedo\t ${ship.departments[1] + 3} \u25B5\t${weapQual["Photon Torpedo"]}\nTractor Beam(Strength 4)\n";
                 ship.talents = "Improved Impulse Drive\nSecondary Reactors\n";
                 inserviceDate = 2285;
                 break;
@@ -390,9 +370,6 @@ function setClassHandler() {
                 addWeapon("Phaser Arrays", ship.scale + ship.departments[1],weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 5");
-                
-                //damage = ship.scale + ship.departments[1];
-                //ship.weaponry = `Phaser Arrays\t ${damage} \u25B5\t${weapQual["Phaser"]}\nPhoton Torpedo\t ${ship.departments[1] + 3} \u25B5\t${weapQual["Photon Torpedo"]}\nTractor Beam(Strength 5)\n`;
                 ship.talents = "Saucer Separation\nModular Laboratories\nRedundant Systems\n";
                 inserviceDate = 2359;
                 break;
@@ -404,9 +381,6 @@ function setClassHandler() {
                 addWeapon("Phaser Arrays", ship.scale + ship.departments[1],weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 3");
-                
-                //damage = ship.scale + ship.departments[1];
-                //ship.weaponry = `Phaser Arrays\t ${damage} \u25B5\t${weapQual["Phaser"]}\nPhoton Torpedo\t ${ship.departments[1] + 3} \u25B5\t${weapQual["Photon Torpedo"]}\nTractor Beam(Strength 3)\n`;
                 ship.talents = "Improved Warp Drive\nAdvanced Sensor Suites\nEmergency Medical Hologram\n";
                 inserviceDate = 2371;
                 break;
@@ -418,9 +392,6 @@ function setClassHandler() {
                 addWeapon("Phaser Banks", ship.scale + ship.departments[1] + 1,weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 3");
-                
-                //damage = ship.scale + ship.departments[1];
-                //ship.weaponry = `Phaser Banks\t ${damage + 1} \u25B5\t${weapQual["Phaser"]}\nPhoton Torpedo\t ${ship.departments[1] + 3} \u25B5\t${weapQual["Photon Torpedo"]}\nTractor Beam(Strength 3)\n`;
                 ship.talents = "Extensive Shuttlebays\n";
                 inserviceDate = 2274;
                 break;
@@ -432,9 +403,6 @@ function setClassHandler() {
                 addWeapon("Phaser Arrays", ship.scale + ship.departments[1],weapQual["Phaser"]);
                 addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 2");
-                
-                //damage = ship.scale + ship.departments[1];
-                //ship.weaponry = `Phaser Arrays\t ${damage} \u25B5\t${weapQual["Phaser"]}\nPhoton Torpedoes\t ${ship.departments + 3} \u25B5\t${weapQual["Photon Torpedo"]}\nTractor Beam(Strength 2)\n`;
                 ship.talents = "Advanced Sensors\n";
                 inserviceDate = 2368;
                 break;
@@ -482,17 +450,12 @@ function traitHandler() {
 
 function addWeapon(name,damage,qualities) {
     console.log("weaponHandler fired");
-    /*let damage  = ship.scale + ship.departments[1] + weapDamage[deliverySelect.value];
-    if(!ship.weaponry.includes(typeSelect.value + " " + deliverySelect.value)){
-        ship.weaponry += typeSelect.value + " " + deliverySelect.value + "\t" + damage + "\u25B5" + weapQual[typeSelect.value] + "\n";
+    if(!ship.weaponry.name.includes(name)){
+        ship.weaponry.name.push(name);
+        ship.weaponry.damage.push(damage);
+        ship.weaponry.qualities.push(qualities);
     }
-    
-    console.log(ship.weaponry)
-    weaponDisplay.value = ship.weaponry;*/
 
-    ship.weaponry.name.push(name);
-    ship.weaponry.damage.push(damage);
-    ship.weaponry.qualities.push(qualities);
     console.log(ship.weaponry.name);
     console.log(ship.weaponry.damage);
     console.log(ship.weaponry.qualities);
@@ -506,18 +469,28 @@ function removeWeapon() {
     let index = weaponDisplay.selectedIndex;
     if(index > -1) {
         ship.weaponry.name.splice(index,1);
+        ship.weaponry.damage.splice(index,1);
+        ship.weaponry.qualities.splice(index,1);
         weaponDisplay.remove(weaponDisplay.selectedIndex);
     }
 }
-
-function torpedoHandler() {
-    console.log("torpedoHandler fired");
-    let damage  = ship.departments[1] + weapDamage[torpedoSelect.value];
-    if(!ship.weaponry.includes(torpedoSelect.value)){
-        ship.weaponry += torpedoSelect.value + "\t" + damage + "\u25B5" + weapQual[torpedoSelect.value] + "\n";
+function removeTrait() {
+    console.log("removeTrait fired");
+    let index = weaponDisplay.selectedIndex;
+    if(index > -1) {
+        ship.weaponry.name.splice(index,1);
+        ship.weaponry.damage.splice(index,1);
+        ship.weaponry.qualities.splice(index,1);
+        weaponDisplay.remove(weaponDisplay.selectedIndex);
     }
-    console.log(ship.weaponry)
-    weaponDisplay.value = ship.weaponry;
+}
+function removeTalent() {
+    console.log("removeTalent fired");
+    let index = weaponDisplay.selectedIndex;
+    if(index > -1) {
+        ship.talents.splice(index,1);
+        weaponDisplay.remove(weaponDisplay.selectedIndex);
+    }
 }
 
 function weaponHandler(weapType) {
@@ -585,7 +558,14 @@ function updateStats() {
         medicineTd.textContent = String(ship.departments[5]);
         traitDisplay.value = ship.traits;
         talentDisplay.value = ship.talents;
-        weaponDisplay.value = ship.weaponry;
+        weaponDisplay.innerHTML = "";
+        console.log("Ship Names " + ship.weaponry.name);
+        console.log("Ship Damages " + ship.weaponry.damage);
+        console.log("Ship Qualities " + ship.weaponry.quality);
+        for(let w in ship.weaponry.name) {
+            addWeapon(ship.weaponry.name[w], ship.weaponry.damage[w], ship.weaponry.qualities[w]);
+            console.log(ship.weaponry.name[w]+" "+ ship.weaponry.damage[w]+" "+ ship.weaponry.qualities[w])
+        }
 
 }
 
