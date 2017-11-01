@@ -2,12 +2,18 @@
 Brian Harkless
 Star Trek Adventures Starship Character Sheet
 TO DO LIST:
-Better implementation than textarea for display of traits weapons and talents - multiselect box
-    Requires rewrite of handlers, updateStats, switch statement, and import.
-Would like to be able to remove entries from the above by clicking them and then clicking a remove button multiselect/combo box - implemented for weapon
+//Better implementation than textarea for display of traits weapons and talents - multiselect box
+//    Requires rewrite of handlers, updateStats, switch statement, and import.
+//Would like to be able to remove entries from the above by clicking them and then clicking a remove button multiselect/combo box - implemented for weapon
 Weapon damages should adjust when Security score changes
 //Edit button triggers editable on Name, Class and Profile - Done
-Add nonship building fields (power, shields, etc)
+Add nonship building fields (power, shields, etc) Pg 259
+    Shields = structure + security + talents
+    Resistance = Scale + talents
+    Power = Engines + talents
+    Crew Support = Scale + talents
+    Launch Bay = available shuttles but not well defined in the book itself, maybe something for players to fill in if they feel like it.
+    Bridge Stations
 Add picture of ships when Class is selected
 Clicking on talent explains what it does
 Admin tab? Allow DM to add traits and talents? Would need to track as part of the ship, possibly a separate save file... Might be something to modify if I ever add a backend/serverside element to this for tracking ships in the cloud. appstate
@@ -313,8 +319,8 @@ function setClassHandler() {
                 ship.systems = [9,10,11,9,9,11];
                 ship.departments = [0,2,0,0,0,1];
                 addTrait("Federation Ship");
-                addWeapon("Phaser Arrays", ship.scale + ship.departments[1],weapQual["Phaser"]);
-                addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
+                addWeapon("Phaser Arrays", ship.scale + ship.departments[1], weapQual["Phaser"]);
+                addWeapon("Photon Torpedo", ship.departments[1] + 3, weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 4");
                 addTalent("Ablative Armor");
                 addTalent("Extensive Shuttlebays");
@@ -326,8 +332,8 @@ function setClassHandler() {
                 ship.systems = [8,9,8,7,9,9];
                 ship.departments = [0,1,0,1,1,0];
                 addTrait("Federation Ship");
-                addWeapon("Phaser Banks", ship.scale + ship.departments[1] + 1,weapQual["Phaser"]);
-                addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
+                addWeapon("Phaser Banks", ship.scale + ship.departments[1] + 1, weapQual["Phaser"]);
+                addWeapon("Photon Torpedo", ship.departments[1] + 3, weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 2");
                 addTalent("Improved Warp Drive");
                 addTalent("xtensive Shuttlebays");
@@ -338,8 +344,8 @@ function setClassHandler() {
                 ship.systems = [7,8,8,7,8,8];
                 ship.departments = [1,1,1,0,0,0];
                 addTrait("Federation Ship");
-                addWeapon("Phaser Banks", ship.scale + ship.departments[1] + 1,weapQual["Phaser"]);
-                addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
+                addWeapon("Phaser Banks", ship.scale + ship.departments[1] + 1, weapQual["Phaser"]);
+                addWeapon("Photon Torpedo", ship.departments[1] + 3, weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 3");
                 addTalent("Rugged Design");
                 addTalent("Modular Laboratories");
@@ -350,10 +356,10 @@ function setClassHandler() {
                 ship.systems = [9,10,8,9,9,13];
                 ship.departments = [0,2,0,1,0,0];
                 addTrait("Federation Ship");
-                addWeapon("Phaser Arrays", ship.scale + ship.departments[1],weapQual["Phaser"]);
-                addWeapon("Phaser Cannon", ship.scale + ship.departments[1] +2,weapQual["Phaser"]);
-                addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
-                addWeapon("Quantum Torpedo", ship.departments[1] + 4,weapQual["Quantum Torpedo"]);
+                addWeapon("Phaser Arrays", ship.scale + ship.departments[1], weapQual["Phaser"]);
+                addWeapon("Phaser Cannon", ship.scale + ship.departments[1] +2, weapQual["Phaser"]);
+                addWeapon("Photon Torpedo", ship.departments[1] + 3, weapQual["Photon Torpedo"]);
+                addWeapon("Quantum Torpedo", ship.departments[1] + 4, weapQual["Quantum Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 2");
                 addTalent("Ablative Armor");
                 addTalent("Quantum Torpedoes");
@@ -364,8 +370,8 @@ function setClassHandler() {
                 ship.systems = [8,9,9,8,8,9];
                 ship.departments = [1,0,0,0,2,0];
                 addTrait("Federation Ship");
-                addWeapon("Phaser Banks", ship.scale + ship.departments[1] + 1,weapQual["Phaser"]);
-                addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
+                addWeapon("Phaser Banks", ship.scale + ship.departments[1] + 1, weapQual["Phaser"]);
+                addWeapon("Photon Torpedo", ship.departments[1] + 3, weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 4");
                 addTalent("Improved Impulse Drive");
                 addTalent("Secondary Reactors");
@@ -376,8 +382,8 @@ function setClassHandler() {
                 ship.systems = [9,10,10,10,9,10];
                 ship.departments = [1,0,1,0,0,1];
                 addTrait("Federation Ship");
-                addWeapon("Phaser Arrays", ship.scale + ship.departments[1],weapQual["Phaser"]);
-                addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
+                addWeapon("Phaser Arrays", ship.scale + ship.departments[1], weapQual["Phaser"]);
+                addWeapon("Photon Torpedo", ship.departments[1] + 3, weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 5");
                 addTalent("Saucer Separation");
                 addTalent("Modular Laboratories");
@@ -389,8 +395,8 @@ function setClassHandler() {
                 ship.systems = [10,11,8,11,10,9];
                 ship.departments = [0,0,2,1,0,0];
                 addTrait("Federation Ship");
-                addWeapon("Phaser Arrays", ship.scale + ship.departments[1],weapQual["Phaser"]);
-                addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
+                addWeapon("Phaser Arrays", ship.scale + ship.departments[1], weapQual["Phaser"]);
+                addWeapon("Photon Torpedo", ship.departments[1] + 3, weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 3");
                 addTalent("Improved Warp Drive");
                 addTalent("Advanced Sensor Suites");
@@ -402,8 +408,8 @@ function setClassHandler() {
                 ship.systems = [8,8,8,8,9,9];
                 ship.departments = [1,0,1,1,0,0];
                 addTrait("Federation Ship");
-                addWeapon("Phaser Banks", ship.scale + ship.departments[1] + 1,weapQual["Phaser"]);
-                addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
+                addWeapon("Phaser Banks", ship.scale + ship.departments[1] + 1, weapQual["Phaser"]);
+                addWeapon("Photon Torpedo", ship.departments[1] + 3, weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 3");
                 addTalent("Extensive Shuttlebays");
                 inserviceDate = 2274;
@@ -413,8 +419,8 @@ function setClassHandler() {
                 ship.systems = [10,9,8,10,10,8];
                 ship.departments = [0,0,2,0,1,0];
                 addTrait("Federation Ship");
-                addWeapon("Phaser Arrays", ship.scale + ship.departments[1],weapQual["Phaser"]);
-                addWeapon("Photon Torpedo", ship.departments[1] + 3,weapQual["Photon Torpedo"]);
+                addWeapon("Phaser Arrays", ship.scale + ship.departments[1], weapQual["Phaser"]);
+                addWeapon("Photon Torpedo", ship.departments[1] + 3, weapQual["Photon Torpedo"]);
                 addWeapon("Tractor Beam", 0, "Strength 2");
                 addTalent("Advanced Sensors");
                 inserviceDate = 2368;
